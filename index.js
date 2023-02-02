@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   let increase = 2;
 
-  const clicks = document.querySelector("#clicks");
+  const clickText = document.querySelector("#clickText");
 
   let clickCount = 0;
   let currentLeft = 300;
@@ -9,32 +9,42 @@ document.addEventListener("DOMContentLoaded", () => {
   let changeLeft = 0;
   let changeTop = 0;
 
+  const clicks = document.querySelector("#clicks");
   const gameover = document.querySelector("#gameover");
-  const krokodil = document.querySelector("#krokodil");
-  const krokodilWidth = krokodil.clientWidth;
-  const krokodilHeight = krokodil.clientHeight;
+  const skin = document.querySelector("#skin");
+  const level = document.querySelector("#level");
+  const tier = document.querySelector("#tier");
 
   setInterval(() => {
 
     currentLeft += changeLeft;
-    krokodil.style.left = `${currentLeft}px`;
+    tier.style.left = `${currentLeft}px`;
 
     currentTop += changeTop;
-    krokodil.style.top = `${currentTop}px`;
+    tier.style.top = `${currentTop}px`;
 
-    const isGameOver = currentTop < -krokodilHeight ||
-      currentLeft < -krokodilWidth ||
-      currentTop > (window.innerHeight + krokodilHeight) ||
-      currentLeft > (window.innerWidth + krokodilWidth);
+    const isGameOver = currentTop < -tier.clientHeight ||
+      currentLeft < -tier.clientWidth ||
+      currentTop > (window.innerHeight + tier.clientHeight) ||
+      currentLeft > (window.innerWidth + tier.clientWidth);
 
     if (isGameOver) {
       gameover.style.display = "flex";
     }
   }, 10);
 
-  krokodil.addEventListener("mousedown", () => {
+  document.querySelectorAll("#skin button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      skin.style.display = "none";
+      level.style.display = "flex";
+
+      tier.src = btn.querySelector("img").src;
+    });
+  })
+
+  tier.addEventListener("mousedown", () => {
     clickCount++;
-    clicks.innerText = clickCount;
+    clickText.innerText = clickCount;
 
     go();
   });
@@ -51,8 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function start(inc) {
     increase = inc;
-    document.querySelector("#level").style.display = "none";
-    krokodil.style.display = "block";
+    clicks.style.display = "block";
+    level.style.display = "none";
+    tier.style.display = "block";
 
     go();
   }
