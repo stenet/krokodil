@@ -1,0 +1,37 @@
+#level {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+#level button {
+  background-color: black;
+  color: red;
+  font-weight: bold;
+  padding: 2rem 2rem;
+  font-size: 5rem;
+}
+#gameover {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+}
+#krokodil {
+  display: none;
+  position: absolute;
+  border: 5px solid red;
+  width: 400px;
+  user-select: none;
+}
